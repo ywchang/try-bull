@@ -6,10 +6,12 @@
   "author": "Yanwei",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "serve": "babel-node tools/server.js"
+    "start": "npm-run-all --parallel serve express",
+    "serve": "babel-node tools/server.js",
+    "express": "node ./express/index.js"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
@@ -20,6 +22,7 @@
     "css-loader": "^0.28.9",
     "express": "^4.16.2",
     "file-loader": "^1.1.6",
+    "npm-run-all": "^4.1.2",
     "open": "^0.0.5",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -27,6 +30,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",

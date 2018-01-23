@@ -30,12 +30,14 @@ const getJob = (randomNumberId, queueName, jobId) => {
                 }
             })
             .catch(err => {
-                console.log(err)
+                setTimeout(() => {
+                    dispatch(getJob(randomNumberId, queueName, jobId));
+                }, 1000);
             });
     };
 }
 
-export const createRandomNumber = (queueName = 'inAppQueue') => {
+export const createRandomNumber = (queueName) => {
     return dispatch => {
         axios.post(`http://localhost:8082/random-numbers?queueName=${queueName}`)
             .then((response) => {

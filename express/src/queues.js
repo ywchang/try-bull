@@ -1,24 +1,15 @@
 const Queue = require('bull')
 const _ = require('lodash')
-
-const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
+const processJob = require('./processJob')
+const path = require('path')
 
 const inAppQueue = new Queue('in-app queue', 'redis://127.0.0.1:6379');
+const outAppQueue = new Queue('out-app queue', 'redis://127.0.0.1:6379')
 
-inAppQueue.process(function(job) {
-    return (async() => {
-        for (let i = 0; i < 100; i++) {
-            await job.progress(i + 1);
-            await snooze(25);
-        }
-        return {
-            value: _.random(0, 100),
-            workerId: require('process').pid
-        };
-    })();
-});
+inAppQueue.process(processJob);
+outAppQueue.process(2, path.resolve(__dirname, './processJob.js'))
 
 module.exports = {
-    inAppQueue
+    inAppQueue,
+    outAppQueue
 }
-

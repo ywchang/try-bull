@@ -8,6 +8,8 @@ const Header = () => {
             {" | "}
             <NavLink to="/in-app-queue" activeClassName="active">In-App Queue</NavLink>
             {" | "}
+            <NavLink to="/out-app-queue" activeClassName="active">Out-App Queue</NavLink>
+            {" | "}
             <NavLink to="/about" activeClassName="active">About</NavLink>
         </nav>
     );

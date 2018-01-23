@@ -1,9 +1,9 @@
 import * as React from 'react'
-import InAppQueueForm from "./InAppQueueForm";
+import OutAppQueueForm from "./OutAppQueueForm";
 import {connect} from "react-redux";
 import {createRandomNumber} from '../../actions/randomNumberActions'
 
-const InAppQueuePage = ({randomNumbers, actions}) => {
+const OutAppQueuePage = ({randomNumbers, actions}) => {
     const createRandomNumber = (event) => {
         event.preventDefault();
         actions.createRandomNumber();
@@ -11,8 +11,8 @@ const InAppQueuePage = ({randomNumbers, actions}) => {
 
     return (
         <div>
-            <h1>In-App Queue</h1>
-            <InAppQueueForm randomNumbers={randomNumbers} createRandomNumber={createRandomNumber}/>
+            <h1>Out-App Queue</h1>
+            <OutAppQueueForm randomNumbers={randomNumbers} createRandomNumber={createRandomNumber}/>
         </div>
     );
 }
@@ -26,9 +26,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            createRandomNumber: () => dispatch(createRandomNumber('inAppQueue'))
+            createRandomNumber: () => dispatch(createRandomNumber('outAppQueue'))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InAppQueuePage)
+export default connect(mapStateToProps, mapDispatchToProps)(OutAppQueuePage)

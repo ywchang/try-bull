@@ -58,7 +58,7 @@ async function boot() {
         const server = await app.listen(app.get('port'))
         console.log(`App is listening at port: ${app.get('port')}`)
         console.log(`Current process id: ${require('process').pid}`)
-        return server
+
     } catch (e) {
         console.log('Failed at boot up due to below error \n', e)
         throw e

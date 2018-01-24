@@ -7,6 +7,9 @@ module.exports = (job) => {
             await job.progress(i + 1);
             await snooze(25);
         }
+        if (job.id.toString().endsWith('0')) {
+            throw new Error('Not Luck!');
+        }
         return {
             value: _.random(0, 100),
             workerId: require('process').pid

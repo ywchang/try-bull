@@ -38,7 +38,10 @@ app.post('/random-numbers', async(req, res, next) => {
     try {
         const queueName = req.query.queueName
         const randomNumberId = getRandomNumberId()
-        const job = await queues[queueName].add({randomNumberId})
+        const job = await queues[queueName].add({randomNumberId}, {
+            'backoff': 3,
+            'attempts': 3
+        })
         res.status(202).json({
             randomNumberId,
             queueName,

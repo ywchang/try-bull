@@ -1,6 +1,9 @@
 import React from 'react'
 
 const RandomNumberRow = ({randomNumber}) => {
+
+    const failedClass = randomNumber.job.state === 'failed' ? 'bg-danger' : ''
+
     return (
         <tr>
             <td>{randomNumber.randomNumberId}</td>
@@ -10,7 +13,7 @@ const RandomNumberRow = ({randomNumber}) => {
             <td>{randomNumber.job.queueName}</td>
             <td>
                 <div className="progress">
-                    <div className="progress-bar"
+                    <div className={`progress-bar ${failedClass}`}
                          role="progressbar"
                          style={{width: `${randomNumber.job.progress}%`}}
                          aria-valuenow={randomNumber.job.progress}

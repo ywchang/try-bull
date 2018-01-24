@@ -2,6 +2,7 @@ import * as React from 'react'
 import InAppQueueForm from "./InAppQueueForm";
 import {connect} from "react-redux";
 import {createRandomNumber} from '../../actions/randomNumberActions'
+import {getRandomNumbersByQueue} from "../../selectors";
 
 const InAppQueuePage = ({randomNumbers, actions}) => {
     const createRandomNumber = (event) => {
@@ -19,7 +20,7 @@ const InAppQueuePage = ({randomNumbers, actions}) => {
 
 const mapStateToProps = (state) => {
     return {
-        randomNumbers: state.randomNumbers
+        randomNumbers: getRandomNumbersByQueue('inAppQueue')(state)
     }
 }
 

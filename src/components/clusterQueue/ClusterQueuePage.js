@@ -1,10 +1,10 @@
 import * as React from 'react'
-import OutAppQueueForm from "./OutAppQueueForm";
+import ClusterQueueForm from "./ClusterQueueForm";
 import {connect} from "react-redux";
 import {createRandomNumber} from '../../actions/randomNumberActions'
 import {getRandomNumbersByQueue} from "../../selectors";
 
-const OutAppQueuePage = ({randomNumbers, actions}) => {
+const ClusterQueuePage = ({randomNumbers, actions}) => {
     const createRandomNumber = (event) => {
         event.preventDefault();
         actions.createRandomNumber();
@@ -12,24 +12,24 @@ const OutAppQueuePage = ({randomNumbers, actions}) => {
 
     return (
         <div>
-            <h1>Out-App Queue</h1>
-            <OutAppQueueForm randomNumbers={randomNumbers} createRandomNumber={createRandomNumber}/>
+            <h1>Cluster Queue</h1>
+            <ClusterQueueForm randomNumbers={randomNumbers} createRandomNumber={createRandomNumber}/>
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        randomNumbers: getRandomNumbersByQueue('outAppQueue')(state)
+        randomNumbers: getRandomNumbersByQueue('clusterQueue')(state)
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            createRandomNumber: () => dispatch(createRandomNumber('outAppQueue'))
+            createRandomNumber: () => dispatch(createRandomNumber('clusterQueue'))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutAppQueuePage)
+export default connect(mapStateToProps, mapDispatchToProps)(ClusterQueuePage)

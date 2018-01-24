@@ -1,6 +1,7 @@
 const express = require('express')
 const _ = require('lodash')
 const queues = require('./queues')
+const Arena = require('bull-arena');
 
 const app = express()
 app.set('port', 8082)
@@ -47,6 +48,22 @@ app.post('/random-numbers', async(req, res, next) => {
         next(err)
     }
 })
+
+const arena = Arena({
+    queues: [{
+        "name": "in-app queue",
+        "port": 6379,
+        "host": "127.0.0.1",
+        "hostId": "redis"
+    }, {
+        "name": "out-app queue",
+        "port": 6379,
+        "host": "127.0.0.1",
+        "hostId": "redis"
+    }]
+});
+
+app.use('/arena', arena);
 
 app.all('*', (req, res, next) => {
     res.status(200).json({'message': 'default response'})
